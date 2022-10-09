@@ -20,15 +20,12 @@ function titleClickHandler(event){
   }
 
   /* get 'href' attribute from the clicked link */
-    
   const articleSelector = clickedElement.getAttribute('href');
     
-  /* find the correct article using the selector (value of 'href' attribute) */
-    
+  /* find the correct article using the selector (value of 'href' attribute) */ 
   const targetArticle = document.querySelector(articleSelector);
     
   /* add class 'active' to the correct article */
-
   targetArticle.classList.add('active');
 }
 
@@ -39,8 +36,6 @@ const optArticleSelector = '.post',
   optTitleListSelector = '.titles',
   optArticleTagsSelector = '.post-tags .list';
   
-      
-
 function generateTitleLinks(customSelector = ''){
 
   /* remove contents of titleList */    
@@ -162,18 +157,25 @@ function tagClickHandler(event){
 
   /* END LOOP: for each found tag link */
   }
+
   /* execute function "generateTitleLinks" with article selector as argument */
   generateTitleLinks('[data-tags~="' + tag + '"]');
 }
 
+
 function addClickListenersToTags(){
+
   /* find all links to tags */
+  const allTagLinks = document.querySelectorAll('a[href^="#tag-"]');
+  console.log('all tag links:' + allTagLinks);
 
   /* START LOOP: for each link */
+  for (let allTagLink of allTagLinks) {
 
     /* add tagClickHandler as event listener for that link */
-
+    allTagLink.addEventListener('click', tagClickHandler);
   /* END LOOP: for each link */
+  }
 }
 
 addClickListenersToTags();
