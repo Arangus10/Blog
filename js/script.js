@@ -257,17 +257,17 @@ function authorClickHandler(event){
 }
 
 /****************** part.8 - function addClickListenersToAuthors ******************/
-function addClickListenersToTags(){
+function addClickListenersToAuthors(){
 
   /* find all links to tags */
-  const allTagLinks = document.querySelectorAll('a[href^="#tag-"]');
+  const allAuthorLinks = document.querySelectorAll('a[href^="#author-"]');
   
   /* START LOOP: for each link */
-  for (let allTagLink of allTagLinks) {
+  for (let allAuthorLink of allAuthorLinks) {
 
-    /* add tagClickHandler as event listener for that link */
-    allTagLink.addEventListener('click', tagClickHandler);
+    /* add authorClickHandler as event listener for that link */
+    allAuthorLink.addEventListener('click', authorClickHandler);
   /* END LOOP: for each link */
   }
 }
-addClickListenersToTags();
+addClickListenersToAuthors();
