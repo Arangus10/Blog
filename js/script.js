@@ -7,16 +7,16 @@ const templates = {
   authorSideLink: Handlebars.compile(document.querySelector('#template-authorSide-link').innerHTML),
 };
 const opts = {
-  articleSelector : '.post',
-  titleSelector :  '.post-title',
-  titleListSelector : '.titles',
+  articleSelector : '.post', 
+  titleSelector :  '.post-title', 
+  titleListSelector : '.titles', 
   articleTagsSelector : '.post-tags .list',
   articleAuthorSelector : '.post-author',
-  tagsListSelector : '.tags .list',
+  tagsListSelector : '.list.tags',
   cloudClassCount : 5,
   cloudClassPrefix : 'tag-size-',
   authorsListSelector : '.authors.list',
-}
+};
 
 
 /****************** part.1 - function titleClickHandler ******************/
@@ -67,10 +67,10 @@ function generateTitleLinks(customSelector = ''){
     /* get the article id */
     const articleId = article.getAttribute('id');
 
-    /* find the title element */
+    /* find the article title element */
     const titleElement = article.querySelector(opts.titleSelector);
   
-     /* get the title from the title element */
+     /* get the title from the title article */
      const title = titleElement.innerHTML;
 
     /* create HTML of the link */
@@ -95,7 +95,6 @@ generateTitleLinks();
 function calculateTagsParams(tags) {
   const params = {min : 99999, max : 0};
   for (let tag in tags) {
-    console.log(tag + ' is used ' + tags[tag] + ' times');
     if(tags[tag] > params.max) {
       params.max = tags[tag];
     } else if (tags[tag] < params.min) {
@@ -187,7 +186,6 @@ function generateTags(){
   
   /* [NEW] add html from allTagsHTML to tagList */
   tagList.innerHTML = templates.tagCloudLink(allTagsData);
-  console.log('allTagsData:' + allTagsData)
 
 }
 generateTags();
@@ -345,7 +343,7 @@ function authorClickHandler(event){
   const authorLinks = document.querySelectorAll('a[href="' + href + '"]');
   
   /* START LOOP: for each found tag link */
-  for (let authorLink of authorsLinks) {
+  for (let authorLink of authorLinks) {
 
     /* add class active */
     authorLink.classList.add('active');
